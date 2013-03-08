@@ -1,0 +1,50 @@
+% ===
+% Author: Nazar Gerasymchuk, 08.03.2013
+% 	Nazar.Gerasymchuk [at] GMail
+% 	http://neval8.wordpress.com/
+% Feel free to improve this code, 
+% or feed back to me.
+% ===
+
+\documentclass[a5paper, 14pt, oneside]{scrartcl}
+\usepackage[T2A]{fontenc}				% внутрішнє кодування  TeX
+\usepackage[utf8]{inputenc}				% кодова сторінка документа
+\usepackage[english, ukrainian]{babel}	% локалізація і переноси
+\usepackage{cmap}						% адекватний пошук в pdf
+\usepackage{layouts}
+
+% === ОПИС КОМАНДИ \ComaSign ===
+% 0. Майже те що треба вже є готове:
+%	\cb{!}
+% 1. Описую змінну ComaLen -- ширина символу ","
+%	\newlength{\ComaLen}
+% 2. Для типової гарнітури -- змінній ComaLen покладаю значення ширини символу ","
+%	\settowidth{\ComaLen}{,}
+% 3. Друкую символ "!"
+% 4. Засобами makebox досягаю друку коми зі зміщенням саме на необхідному місці
+%	makebox шириною в ширину символу ",", в який поміщаю текст ",.." -- де
+%	дві крапки -- займають місце, проте невилимі (\phantom)
+\newlength{\ComaLen}
+\newcommand{\ComaSign}{\settowidth{\ComaLen}{,}!\makebox[\ComaLen]{,\phantom{..}}}
+% ===
+
+\author{Nazar Gerasymchuk}
+
+\begin{document}
+% Друкую значення ComaLen в міліметрах за допомогою підключеного пакету layouts
+%	\usepackage{layouts}
+% Ширина символа <<,>> = \printinunitsof{mm}\prntlen{\ComaLen}
+
+\today\vspace{2cm}
+
+ComaSign у різних гарнітурах:
+\begin{itemize}
+	\item Типова: \ComaSign
+	\item Курсив (\textit{italic}): \textit{\ComaSign}
+	\item Напівжирний (\textbf{boldface}): \textbf{\ComaSign}
+	\item Напівжирний курсив (\textbf{\textit{boldface italic}}): \textbf{\textit{\ComaSign}}
+	\item Нахилений (\textsl{slanted}): \textsl{\ComaSign}
+	\item Друкарська машинка (\texttt{typewriter}): \texttt{\ComaSign}
+	\item Рублений (\textsf{sans serif}): \textsf{\ComaSign}
+\end{itemize}
+\end{document}
